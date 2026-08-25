@@ -106,7 +106,7 @@ export default function PostEditorHeader({
               open={isPublishMenuOpen}
               onOpenChange={setIsPublishMenuOpen}
             >
-              <DropdownMenuTrigger asChild>
+              {/* <DropdownMenuTrigger asChild>
                 <Button variant={"primary"} disabled={isPublishing}>
                   {isPublishing ? (
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -115,7 +115,23 @@ export default function PostEditorHeader({
                   )}
                   Publish
                 </Button>
-              </DropdownMenuTrigger>
+              </DropdownMenuTrigger> */}
+
+
+            <DropdownMenuTrigger
+  disabled={isPublishing}
+  className="bg-gradient-to-r from-purple-700 to-blue-700 hover:from-purple-800 hover:to-blue-800 shadow-sm text-white h-8 gap-1.5 px-2.5 inline-flex shrink-0 items-center justify-center rounded-lg text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50"
+>
+  {isPublishing ? (
+    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+  ) : (
+    <Send className="h-4 w-4 mr-2" />
+  )}
+  Publish
+</DropdownMenuTrigger>
+
+
+
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem
                   onClick={() => {

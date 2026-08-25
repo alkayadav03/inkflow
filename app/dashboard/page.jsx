@@ -24,8 +24,8 @@ import {
 import Link from "next/link";
 import { api } from "@/convex/_generated/api";
 import { useConvexQuery } from "@/hooks/use-convex-query";
-//import { formatDistanceToNow } from "date-fns";
-//import DailyViewsChart from "@/components/daily-views-chart";
+import { formatDistanceToNow } from "date-fns";
+import DailyViewsChart from "@/components/daily-views-chart";
 
 export default function DashboardPage() {
   // Fetch real data
