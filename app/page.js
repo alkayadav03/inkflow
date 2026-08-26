@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Star, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -12,47 +10,54 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
+import { Badge } from "@/components/ui/badge";
 import {
   features,
   platformTabs,
   socialProofStats,
   testimonials,
 } from "@/lib/data";
+import Image from "next/image";
+import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
-
-
-export default function Home() {
-const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+const Home = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState(0);
-   useEffect(() => {
+
+  useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-  window.addEventListener("mousemove", handleMouseMove);
- return () => {
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
-
+  // Data arrays
+  const navigationItems = [
+    { label: "Features", href: "#features" },
+    { label: "About", href: "#about" },
+  ];
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* Animated gradient background */}
-      <div className="fixed inset-0 bg-linear-to-br from-purple-900/20 via-blue-900/20 to-green-900/20 animate-pulse"></div>
+      <div className="fixed inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-green-900/20 animate-pulse"></div>
 
       {/* Dynamic cursor effect */}
       <div
-        className="fixed w-96 h-96 bg-linear-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl pointer-events-none z-0"
+        className="fixed w-96 h-96 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl pointer-events-none z-0"
         style={{
           left: mousePosition.x - 192,
           top: mousePosition.y - 192,
           transition: "all 0.3s ease-out",
         }}
       ></div>
-     {/* Hero Section */}
+
+      {/* Hero Section */}
       <section className="relative z-10 mt-48 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
@@ -62,7 +67,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
                 <span className="block font-light italic text-purple-300">
                   Publish.
                 </span>
-                <span className="block font-black  bg-linear-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
+                <span className="block font-black bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
                   Grow.
                 </span>
               </h1>
@@ -97,10 +102,45 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
                 </Button>
               </Link>
             </div>
-             </div>
-             <div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 sm:gap-8 text-sm text-gray-400">
+              <div className="flex items-center gap-2">
+                <div className="flex -space-x-2">
+                  {[
+                    "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop",
+                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+                    "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop",
+                    "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop",
+                  ].map((src, i) => (
+                    <div key={i} className="relative w-6 h-6 sm:w-8 sm:h-8">
+                      <Image
+                        src={src}
+                        alt={`Creator ${i + 1}`}
+                        fill
+                        className="rounded-full border-2 border-black object-cover"
+                        sizes="32px"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <span>10k+ creators</span>
+              </div>
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="w-3 h-3 sm:w-4 sm:h-4 fill-yellow-400 text-yellow-400"
+                  />
+                ))}
+                <span className="ml-1">4.9/5</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive 3D-style elements */}
+          <div>
             <Image
-              src="/bannerFinal.png"
+              src="/banner.png"
               alt="Platform Banner"
               width={500}
               height={700}
@@ -108,11 +148,10 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
               priority
             />
           </div>
-
         </div>
       </section>
 
- {/* Features Grid */}
+      {/* Features Grid */}
       <section
         id="features"
         className="relative mt-14 z-10 py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-r from-gray-900/50 to-purple-900/20"
@@ -153,7 +192,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
         </div>
       </section>
 
- {/* Platform Showcase */}
+      {/* Platform Showcase */}
       <section className="relative z-10 py-16 sm:py-24 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
@@ -221,7 +260,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
         </div>
       </section>
 
-  {/* Social Proof */}
+      {/* Social Proof */}
       <section className="relative z-10 py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-r from-gray-900/50 to-purple-900/20">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-12 sm:mb-16">
@@ -248,7 +287,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
         </div>
       </section>
 
- {/* Testimonials */}
+      {/* Testimonials */}
       <section
         id="testimonials"
         className="relative z-10 py-16 sm:py-24 px-4 sm:px-6"
@@ -307,7 +346,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
         </div>
       </section>
 
- {/* CTA Section */}
+      {/* CTA Section */}
       <section className="relative z-10 py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-r from-gray-900/50 to-purple-900/20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6 sm:mb-8">
@@ -341,6 +380,18 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="relative z-10 border-t py-8 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-muted-foreground">
+            Made with ❤️ by{" "}
+            <span className="text-foreground font-semibold">RoadsideCoder</span>
+          </p>
+        </div>
+      </footer>
     </div>
   );
-}
+};
+
+export default Home;
