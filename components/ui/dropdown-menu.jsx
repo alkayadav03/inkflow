@@ -18,11 +18,30 @@ function DropdownMenuPortal({
   return <MenuPrimitive.Portal data-slot="dropdown-menu-portal" {...props} />;
 }
 
+// function DropdownMenuTrigger({
+//   ...props
+// }) {
+//   return <MenuPrimitive.Trigger data-slot="dropdown-menu-trigger" {...props} />;
+// }
+
+
 function DropdownMenuTrigger({
+  asChild,
+  children,
   ...props
 }) {
-  return <MenuPrimitive.Trigger data-slot="dropdown-menu-trigger" {...props} />;
+  return (
+    <MenuPrimitive.Trigger
+      data-slot="dropdown-menu-trigger"
+      {...props}
+      render={asChild ? children : undefined}
+    >
+      {asChild ? null : children}
+    </MenuPrimitive.Trigger>
+  );
 }
+
+
 
 function DropdownMenuContent({
   align = "start",

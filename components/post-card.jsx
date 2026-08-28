@@ -125,11 +125,23 @@ const PostCard = ({
 
             {showActions && (
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+                {/* <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="flex-shrink-0">
                     <MoreHorizontal className="h-4 w-4" />
                   </Button>
+                </DropdownMenuTrigger> */}
+
+                <DropdownMenuTrigger render={
+                    <Button variant="ghost" size="icon" className="flex-shrink-0" />
+                  }
+                >
+                  <MoreHorizontal className="h-4 w-4" />
                 </DropdownMenuTrigger>
+
+
+
+
+
                 <DropdownMenuContent align="end">
                   {onEdit && (
                     <DropdownMenuItem onClick={() => onEdit(post)}>

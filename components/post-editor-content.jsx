@@ -102,10 +102,20 @@ export default function PostEditorContent({
       const result =
         type === "generate"
           ? await generateBlogContent(title, category, tags || [])
-          : await improveContent(content, improvementType);
+          : await improveContent(content, improvementType,title);
 
       if (result.success) {
-        setValue("content", result.content);
+        // setValue("content", result.content);
+
+
+        setValue("content", result.content, {
+  shouldDirty: true,
+  shouldValidate: true,
+});
+
+
+
+
         toast.success(
           `Content ${type === "generate" ? "generated" : improvementType + "d"} successfully!`
         );

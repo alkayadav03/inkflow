@@ -522,7 +522,21 @@ export default function ImageUploadModal({
                     <>
                       <div className="space-y-3">
                         <Label className="text-white">
+
+
+
                           Font Size: {watchedValues.textFontSize}px
+                        {/* Font Size: {
+                          typeof watchedValues.textFontSize === "number" &&
+                          Number.isFinite(watchedValues.textFontSize)
+                            ? watchedValues.textFontSize
+                            : 50
+                        }px */}
+
+
+
+
+
                         </Label>
                         <Slider
                           value={[watchedValues.textFontSize]}
@@ -534,6 +548,31 @@ export default function ImageUploadModal({
                           step={2}
                           className="w-full"
                         />
+
+                        {/* <Slider
+                          value={[
+                            Number.isFinite(watchedValues.textFontSize)
+                              ? watchedValues.textFontSize
+                              : 50,
+                          ]}
+                          onValueChange={(value) => {
+                            const newValue = Number(value[0]);
+
+                            setValue(
+                              "textFontSize",
+                              Number.isFinite(newValue) ? newValue : 50
+                            );
+                          }}
+                          max={200}
+                          min={12}
+                          step={2}
+                          className="w-full"
+                        /> */}
+
+
+
+
+
                       </div>
 
                       <div className="grid grid-cols-2 gap-3">
